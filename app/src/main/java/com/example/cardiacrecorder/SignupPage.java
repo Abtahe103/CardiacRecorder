@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LoginPage extends AppCompatActivity {
+public class SignupPage extends AppCompatActivity {
 
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
@@ -35,94 +37,106 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
-
-        Button button1 = findViewById(R.id.btn_login);
-        Button button2 = findViewById(R.id.btn_signup);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        EditText usertxt = findViewById(R.id.username_login);
-        EditText emailtxt = findViewById(R.id.email_login);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        EditText passwordtxt = findViewById(R.id.password_login);
+        setContentView(R.layout.activity_signup_page);
+        Button button_signup = findViewById(R.id.btn_signup);
+        EditText first_name = findViewById(R.id.firstName);
+        EditText usertxt = findViewById(R.id.user_signup);
+        EditText emailTxt = findViewById(R.id.email_signup);
+        EditText passwordTxt = findViewById(R.id.password_signup);
         progressBar = findViewById(R.id.progressBarId);
-        mAuth = FirebaseAuth.getInstance();
         progressBar.setVisibility(View.INVISIBLE);
-        button1.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+        button_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userLogin();
+                userRegister();
 
             }
 
-            private void userLogin() {
+            private void userRegister() {
+                String fName = first_name.getText().toString().trim();
                 String user = usertxt.getText().toString().trim();
-                String email = emailtxt.getText().toString().trim();
-                String password = passwordtxt.getText().toString().trim();
+                String email = emailTxt.getText().toString().trim();
+                String password = passwordTxt.getText().toString().trim();
+
+                if (fName.isEmpty()){
+                    first_name.setError("Enter your first name");
+                    first_name.requestFocus();
+                }
+
                 if(user.isEmpty()){
                     usertxt.setError("Enter a username");
                     usertxt.requestFocus();
                     return;
                 }
                 if(email.isEmpty()){
-                    emailtxt.setError("Enter an email address");
-                    emailtxt.requestFocus();
+                    emailTxt.setError("Enter an email address");
+                    emailTxt.requestFocus();
                     return;
                 }
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    emailtxt.setError("Enter a valid email address");
-                    emailtxt.requestFocus();
+                    emailTxt.setError("Enter a valid email address");
+                    emailTxt.requestFocus();
                     return;
                 }
                 if(password.isEmpty()){
-                    passwordtxt.setError("Enter an email address");
-                    passwordtxt.requestFocus();
+                    passwordTxt.setError("Enter an email address");
+                    passwordTxt.requestFocus();
                     return;
                 }
                 if(password.length()<6){
-                    passwordtxt.setError("Minimum length of a password should be 6");
-                    passwordtxt.requestFocus();
+                    passwordTxt.setError("Minimum length of a password should be 6");
+                    passwordTxt.requestFocus();
                     return;
                 }
 
                 databaseReference.child("JobSeeker").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(user)) {
-                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        if(snapshot.hasChild(user)){
+                            usertxt.setError("User is already registered");
+                            usertxt.requestFocus();
+                        }
+                        else{
+                            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
+                                    if(task.isSuccessful()){
                                         progressBar.setVisibility(View.VISIBLE);
                                         Timer timer = new Timer();
-                                        TimerTask timerTask =new TimerTask() {
+                                        TimerTask timerTask = new TimerTask() {
                                             @Override
                                             public void run() {
                                                 count++;
                                                 progressBar.setProgress(count);
-                                                if(count == 20){
+                                                if(count == 30){
                                                     timer.cancel();
-                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
+
+                                                    databaseReference.child("JobSeeker").child(user).child("First Name").setValue(fName);
+                                                    databaseReference.child("JobSeeker").child(user).child("Username").setValue(user);
+                                                    databaseReference.child("JobSeeker").child(user).child("Email").setValue(email);
+                                                    databaseReference.child("JobSeeker").child(user).child("Password").setValue(password);
+                                                    Intent intent = new Intent(SignupPage.this,HomePage.class);
                                                     intent.putExtra("username",user);
                                                     startActivity(intent);
                                                 }
                                             }
                                         };
-                                        timer.schedule(timerTask,0,10);
+                                        timer.schedule(timerTask,0,30);
 
                                     }
-                                    else {
-                                        emailtxt.setError("Wrong Email");
-                                        emailtxt.requestFocus();
-                                        passwordtxt.setError("Or Wrong Password");
-                                        passwordtxt.requestFocus();
+                                    else{
+                                        if(task.getException() instanceof FirebaseAuthUserCollisionException){
+                                            emailTxt.setError("Email is already registered");
+                                            emailTxt.requestFocus();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), "Error : "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             });
 
-                        }
-                        else{
-                            usertxt.setError("Username doesn't exist");
-                            usertxt.requestFocus();
                         }
                     }
 
@@ -132,13 +146,6 @@ public class LoginPage extends AppCompatActivity {
                     }
                 });
 
-            }
-        });
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,HomePage.class);
-                startActivity(intent);
             }
         });
     }
