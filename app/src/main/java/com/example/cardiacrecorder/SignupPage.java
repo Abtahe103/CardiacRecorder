@@ -39,7 +39,7 @@ public class SignupPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_page);
         Button button_signup = findViewById(R.id.btn_signup);
-        EditText first_name = findViewById(R.id.firstName);
+        EditText name = findViewById(R.id.Name);
         EditText usertxt = findViewById(R.id.user_signup);
         EditText emailTxt = findViewById(R.id.email_signup);
         EditText passwordTxt = findViewById(R.id.password_signup);
@@ -54,14 +54,14 @@ public class SignupPage extends AppCompatActivity {
             }
 
             private void userRegister() {
-                String fName = first_name.getText().toString().trim();
+                String fName = name.getText().toString().trim();
                 String user = usertxt.getText().toString().trim();
                 String email = emailTxt.getText().toString().trim();
                 String password = passwordTxt.getText().toString().trim();
 
                 if (fName.isEmpty()){
-                    first_name.setError("Enter your first name");
-                    first_name.requestFocus();
+                    name.setError("Enter your first name");
+                    name.requestFocus();
                 }
 
                 if(user.isEmpty()){
@@ -112,10 +112,10 @@ public class SignupPage extends AppCompatActivity {
                                                 if(count == 30){
                                                     timer.cancel();
 
-                                                    databaseReference.child("JobSeeker").child(user).child("First Name").setValue(fName);
-                                                    databaseReference.child("JobSeeker").child(user).child("Username").setValue(user);
-                                                    databaseReference.child("JobSeeker").child(user).child("Email").setValue(email);
-                                                    databaseReference.child("JobSeeker").child(user).child("Password").setValue(password);
+                                                    databaseReference.child("User").child(user).child("Name").setValue(fName);
+                                                    databaseReference.child("User").child(user).child("Username").setValue(user);
+                                                    databaseReference.child("User").child(user).child("Email").setValue(email);
+                                                    databaseReference.child("User").child(user).child("Password").setValue(password);
                                                     Intent intent = new Intent(SignupPage.this,HomePage.class);
                                                     intent.putExtra("username",user);
                                                     startActivity(intent);
