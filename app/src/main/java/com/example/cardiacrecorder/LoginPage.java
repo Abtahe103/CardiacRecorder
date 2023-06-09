@@ -84,7 +84,7 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
-                databaseReference.child("JobSeeker").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.hasChild(user)) {
@@ -137,7 +137,7 @@ public class LoginPage extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this,HomePage.class);
+                Intent intent = new Intent(LoginPage.this,SignupPage.class);
                 startActivity(intent);
             }
         });
