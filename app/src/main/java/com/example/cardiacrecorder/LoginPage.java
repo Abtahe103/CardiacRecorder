@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -35,7 +34,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_page);
 
         Button button1 = findViewById(R.id.btn_login);
         Button button2 = findViewById(R.id.btn_signup);
@@ -101,10 +100,9 @@ public class LoginPage extends AppCompatActivity {
                                                 progressBar.setProgress(count);
                                                 if(count == 20){
                                                     timer.cancel();
-//                                                    Toast.makeText(JobSeekerLogin.this, "Login is successful", Toast.LENGTH_SHORT).show();
-//                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
-//                                                    intent.putExtra("username",user);
-//                                                    startActivity(intent);
+                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
+                                                    intent.putExtra("username",user);
+                                                    startActivity(intent);
                                                 }
                                             }
                                         };
@@ -138,8 +136,8 @@ public class LoginPage extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(LoginPage.this,HomePage.class);
-//                startActivity(intent);
+                Intent intent = new Intent(LoginPage.this,HomePage.class);
+                startActivity(intent);
             }
         });
     }
