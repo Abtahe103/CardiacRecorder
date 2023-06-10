@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CardiacRecorder</string>
+    <string name="option1">Add Record</string>
+    <string name="option2">View Records</string>
+    <string name="option3">Your Profile</string>
+    <string name="option4">LogOut</string>
 </resources>
