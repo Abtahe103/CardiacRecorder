@@ -44,6 +44,16 @@ public class AddRecordActivity extends AppCompatActivity {
         comment_edittext = findViewById(R.id.comment);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(usrname);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                child_count = snapshot.getChildrenCount();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         addbutton = findViewById(R.id.add_record_btn);
 
@@ -103,16 +113,7 @@ public class AddRecordActivity extends AppCompatActivity {
 
                 else{
 
-                    databaseReference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            child_count = snapshot.getChildrenCount();
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
                     InsertData();
                 }
             }
