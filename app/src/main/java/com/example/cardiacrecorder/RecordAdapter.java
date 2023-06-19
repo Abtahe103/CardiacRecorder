@@ -33,6 +33,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
         Record record = list.get(position);
         holder.date.setText(record.getDate());
         holder.time.setText(record.getTime());
+        holder.sys.setText(record.getSys_press());
+        holder.dia.setText(record.getDia_press());
+        holder.heart.setText(record.getHeart_rt());
+        holder.com.setText(record.getComment());
     }
 
     @Override
