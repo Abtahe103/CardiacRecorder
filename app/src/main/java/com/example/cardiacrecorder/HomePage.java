@@ -33,6 +33,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this,AddRecordActivity.class);
+                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });
