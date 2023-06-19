@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RecordListActivity extends AppCompatActivity {
+
     RecyclerView recyclerView;
     ArrayList<Record> list;
     DatabaseReference databaseReference;
@@ -29,7 +30,7 @@ public class RecordListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_record_list);
 
         recyclerView = findViewById(R.id.recyclerViewId);
-        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Records");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecordAdapter(this,list);
@@ -38,6 +39,7 @@ public class RecordListActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Record record = dataSnapshot.getValue(Record.class);
                     list.add(record);
