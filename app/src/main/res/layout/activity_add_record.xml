@@ -90,6 +90,22 @@
                 android:padding="10dp"
                 android:textColor="#000000"
                 android:textColorHint="#000000" />
+
+            <EditText
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:inputType="time"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/heart_rate"
+                android:drawablePadding="8dp"
+                android:hint="comment"
+                android:maxLength="20"
+                android:padding="10dp"
+                android:textColor="#000000"
+                android:textColorHint="#000000" />
+
             <Button
                 android:id="@+id/add_record_btn"
                 android:layout_width="match_parent"
