@@ -32,8 +32,9 @@ public class HomePage extends AppCompatActivity {
         add_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomePage.this, AddRecordActivity.class));
-                finish();
+                Intent intent = new Intent(HomePage.this,AddRecordActivity.class);
+                intent.putExtra("username",usrname);
+                startActivity(intent);
             }
         });
 
