@@ -33,7 +33,7 @@ public class AddRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record);
 
-        usrname = getIntent().getStringExtra("username");
+        usrname = HomePage.usrname;
 
 
         heart_rate_editText = findViewById(R.id.heart_rate_edit_text);
