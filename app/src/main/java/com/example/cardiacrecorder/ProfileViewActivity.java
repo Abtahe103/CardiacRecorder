@@ -56,6 +56,6 @@ public class ProfileViewActivity extends AppCompatActivity {
 
             }
         });
-        Toast.makeText(this,"username: "+name+" mail: "+email,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"username: "+name+" mail: "+email,Toast.LENGTH_SHORT).show();
     }
 }
