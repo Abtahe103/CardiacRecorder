@@ -7,7 +7,9 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/homepagebg"
-    tools:context=".HomePage">
+    tools:context=".HomePage"
+    android:id="@+id/homepage"
+    >
 
     <TextView
         android:id="@+id/usernametext"
