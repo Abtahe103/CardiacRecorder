@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
-
+    static String usrname;
     CardView add_card,record_card,profile_card,logout_card;
     TextView textView;
 
@@ -19,7 +19,7 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        String usrname = getIntent().getStringExtra("username");
+        usrname = getIntent().getStringExtra("username");
         textView = findViewById(R.id.usernametext);
         textView.setText("Hi, "+usrname+"! How are you today?");
 
@@ -33,7 +33,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this,AddRecordActivity.class);
-                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });
@@ -45,10 +44,14 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        /**
+         * listener for profile_card
+         */
         profile_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(HomePage.this,ProfileViewActivity.class);
+                startActivity(intent);
             }
         });
 
