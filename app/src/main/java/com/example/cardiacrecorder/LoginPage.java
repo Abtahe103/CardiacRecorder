@@ -1,8 +1,5 @@
 package com.example.cardiacrecorder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -44,9 +41,9 @@ public class LoginPage extends AppCompatActivity {
         EditText emailtxt = findViewById(R.id.email_login);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         EditText passwordtxt = findViewById(R.id.password_login);
-        progressBar = findViewById(R.id.progressBarId);
+//        progressBar = findViewById(R.id.progressBarId);
         mAuth = FirebaseAuth.getInstance();
-        progressBar.setVisibility(View.INVISIBLE);
+//        progressBar.setVisibility(View.INVISIBLE);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,23 +89,25 @@ public class LoginPage extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        Timer timer = new Timer();
-                                        TimerTask timerTask =new TimerTask() {
-                                            @Override
-                                            public void run() {
-                                                count++;
-                                                progressBar.setProgress(count);
-                                                if(count == 20){
-                                                    timer.cancel();
-                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
-                                                    intent.putExtra("username",user);
-                                                    startActivity(intent);
-                                                }
-                                            }
-                                        };
-                                        timer.schedule(timerTask,0,10);
+//                                        progressBar.setVisibility(View.VISIBLE);
+//                                        Timer timer = new Timer();
+//                                        TimerTask timerTask =new TimerTask() {
+//                                            @Override
+//                                            public void run() {
+//                                                count++;
+//                                                progressBar.setProgress(count);
+//                                                if(count == 20){
+//                                                    timer.cancel();
+//
+//                                                }
+//                                            }
+//                                        };
+//                                        timer.schedule(timerTask,0,10);
 
+                                        Intent intent = new Intent(LoginPage.this,HomePage.class);
+                                        HomePage.usrname = user;
+                                        startActivity(intent);
+                                        finish();
                                     }
                                     else {
                                         emailtxt.setError("Wrong Email");

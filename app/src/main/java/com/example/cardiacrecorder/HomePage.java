@@ -1,13 +1,12 @@
 package com.example.cardiacrecorder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class HomePage extends AppCompatActivity {
     static String usrname;
@@ -19,7 +18,6 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        usrname = getIntent().getStringExtra("username");
         textView = findViewById(R.id.usernametext);
         textView.setText("Hi, "+usrname+"! How are you today?");
 

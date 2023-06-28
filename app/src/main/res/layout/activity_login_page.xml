@@ -8,7 +8,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:layout_gravity="center"
-    android:background="@drawable/loginpagebgrnd2">
+    android:background="@drawable/loginpagebgrnd2"
+    android:id="@+id/loginview_activity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -111,11 +112,11 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ProgressBar
-        android:progressBackgroundTint="#cf3e00"
-        android:progressTint="#cf3e00"
-        android:id="@+id/progressBarId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<!--    <ProgressBar-->
+<!--        android:progressBackgroundTint="#cf3e00"-->
+<!--        android:progressTint="#cf3e00"-->
+<!--        android:id="@+id/progressBarId"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
 </LinearLayout>
