@@ -22,6 +22,19 @@ public class LoginPageTest {
     @Rule
     public ActivityScenarioRule<LoginPage> activityScenarioRule = new ActivityScenarioRule<>(LoginPage.class);
 
+    /**
+     * this test function checks if everything in login page is displayed properly
+     */
+    public void displaytest(){
+        onView(withId(R.id.username_login)).check(matches(isDisplayed()));
+        onView(withId(R.id.email_login)).check(matches(isDisplayed()));
+        onView(withId(R.id.password_login)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * this test function types in all the editext and perform login
+     * @throws InterruptedException
+     */
     @Test
     public void loginSuccessTest() throws InterruptedException {
         Intents.init();
@@ -31,11 +44,21 @@ public class LoginPageTest {
         Espresso.pressBack();
         onView(withId(R.id.btn_login)).perform(click());
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         Intents.intended(IntentMatchers.hasComponent(HomePage.class.getName()));
         onView(withId(R.id.homepage_activity)).check(matches(isDisplayed()));
         Intents.release();
 
 //        onView(withId(R.id.homepage_activiy)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * this test function checks whether the signup button works perfectly
+     */
+    @Test
+    public void signupbuttontest() throws InterruptedException {
+        onView(withId(R.id.btn_signup)).perform(click());
+        Thread.sleep(1000);
+        onView(withId(R.id.signuppage)).check(matches(isDisplayed()));
     }
 }
