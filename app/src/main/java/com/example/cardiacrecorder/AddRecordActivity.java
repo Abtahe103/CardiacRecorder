@@ -1,13 +1,13 @@
 package com.example.cardiacrecorder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,14 +25,14 @@ public class AddRecordActivity extends AppCompatActivity {
     Button addbutton;
     DatabaseReference databaseReference;
 
-    String usrname;
+    static String usrname;
     long child_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record);
-
+        usrname = "adnan";
         usrname = HomePage.usrname;
 
 
@@ -112,8 +112,6 @@ public class AddRecordActivity extends AppCompatActivity {
                 }
 
                 else{
-
-
                     InsertData();
                 }
             }

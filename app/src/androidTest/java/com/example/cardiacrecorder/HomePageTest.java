@@ -20,9 +20,14 @@ public class HomePageTest {
     @Rule
     public ActivityScenarioRule<HomePage> activityScenarioRule = new ActivityScenarioRule<>(HomePage.class);
 
+    /**
+     * checks all cardviews are acting normal
+     */
     @Test
     public void testHomePageView(){
         ActivityScenario.launch(HomePage.class);
+        HomePage.usrname="adnan";
+        onView(withId(R.id.usernametext)).check(matches(isDisplayed()));
         onView(withId(R.id.add_cardview)).perform(click());
         onView(withId(R.id.add_record_view)).check(matches(isDisplayed()));
         Espresso.pressBack();

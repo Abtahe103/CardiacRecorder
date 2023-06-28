@@ -18,7 +18,6 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        usrname = getIntent().getStringExtra("username");
         textView = findViewById(R.id.usernametext);
         textView.setText("Hi, "+usrname+"! How are you today?");
 

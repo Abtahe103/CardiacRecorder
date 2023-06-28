@@ -112,11 +112,11 @@
 
     </androidx.cardview.widget.CardView>
 
-    <ProgressBar
-        android:progressBackgroundTint="#cf3e00"
-        android:progressTint="#cf3e00"
-        android:id="@+id/progressBarId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<!--    <ProgressBar-->
+<!--        android:progressBackgroundTint="#cf3e00"-->
+<!--        android:progressTint="#cf3e00"-->
+<!--        android:id="@+id/progressBarId"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
 </LinearLayout>
