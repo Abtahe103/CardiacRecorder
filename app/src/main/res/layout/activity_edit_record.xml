@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:backgroundTint="#242424"
-                android:text="Add Record"
+                android:text="Update Record"
                 android:textAppearance="?android:textAppearanceMedium" />
 
         </LinearLayout>
