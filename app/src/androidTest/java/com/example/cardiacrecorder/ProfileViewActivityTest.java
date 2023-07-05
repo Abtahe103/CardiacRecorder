@@ -19,13 +19,12 @@ public class ProfileViewActivityTest {
      */
     @Test
     public void displaytest() throws InterruptedException {
-        HomePage.usrname="adnan";
+        String usrname="adnan";
 
         ActivityScenarioRule<ProfileViewActivity> activityScenarioRule = new ActivityScenarioRule<ProfileViewActivity>(ProfileViewActivity.class);
         ActivityScenario.launch(ProfileViewActivity.class);
         Thread.sleep(1000);
         onView(withId(R.id.name_profile)).check(matches(isDisplayed()));
-        onView(withId(R.id.username_profile));
         onView(withId(R.id.mail_profile));
 
     }

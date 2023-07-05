@@ -21,7 +21,7 @@ public class RecordListActivityTest {
      */
     @Test
     public void displaytest() throws InterruptedException {
-        HomePage.usrname = "3tlXhQvx8ud4tzMX8XifBCHmgpJ3";
+        String usrname = "3tlXhQvx8ud4tzMX8XifBCHmgpJ3";
 
         ActivityScenarioRule<RecordListActivity> activityScenarioRule = new ActivityScenarioRule<RecordListActivity>(RecordListActivity.class);
         ActivityScenario.launch(RecordListActivity.class);
