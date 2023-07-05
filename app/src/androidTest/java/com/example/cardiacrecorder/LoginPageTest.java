@@ -26,7 +26,6 @@ public class LoginPageTest {
      * this test function checks if everything in login page is displayed properly
      */
     public void displaytest(){
-        onView(withId(R.id.username_login)).check(matches(isDisplayed()));
         onView(withId(R.id.email_login)).check(matches(isDisplayed()));
         onView(withId(R.id.password_login)).check(matches(isDisplayed()));
     }
@@ -38,7 +37,6 @@ public class LoginPageTest {
     @Test
     public void loginSuccessTest() throws InterruptedException {
         Intents.init();
-        onView(withId(R.id.username_login)).perform(typeText("adnan"));
         onView(withId(R.id.email_login)).perform(typeText("adnan@gmail.com"));
         onView(withId(R.id.password_login)).perform(typeText("123456"));
         Espresso.pressBack();

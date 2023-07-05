@@ -26,7 +26,6 @@ public class SignupPageTest {
     @Test
     public void displayTest() {
         onView(withId(R.id.Name)).check(matches(isDisplayed()));
-        onView(withId(R.id.user_signup)).check(matches(isDisplayed()));
         onView(withId(R.id.email_signup)).check(matches(isDisplayed()));
         onView(withId(R.id.password_signup)).check(matches(isDisplayed()));
         onView(withId(R.id.btn_signup)).check(matches(isDisplayed()));
@@ -39,7 +38,6 @@ public class SignupPageTest {
     public void signupSuccessTest() throws InterruptedException {
 
         onView(withId(R.id.Name)).perform(typeText("abcd123"));
-        onView(withId(R.id.user_signup)).perform(typeText("abcd123"));
         onView(withId(R.id.email_signup)).perform(typeText("hp@gmail.com"));
         Espresso.pressBack();
         onView(withId(R.id.password_signup)).perform(typeText("123456"));

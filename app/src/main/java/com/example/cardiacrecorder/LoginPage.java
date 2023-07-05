@@ -87,7 +87,7 @@ public class LoginPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             String user = mAuth.getCurrentUser().getUid();
                             Intent intent = new Intent(LoginPage.this, HomePage.class);
-                            intent.putExtra("username",user);
+                            HomePage.usrname = user;
                             startActivity(intent);
 
                     
