@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    android:background="@drawable/loginpagebgrnd2">
+    android:background="@drawable/loginpagebgrnd2"
+    android:id="@+id/profileview_activity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

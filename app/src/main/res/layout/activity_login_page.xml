@@ -8,7 +8,8 @@
     android:orientation="horizontal"
     android:gravity="center"
     android:layout_gravity="center"
-    android:background="@drawable/loginpagebgrnd2">
+    android:background="@drawable/loginpagebgrnd2"
+    android:id="@+id/loginview_activity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -43,18 +44,7 @@
                 android:layout_marginBottom="20dp"
                 android:textStyle="bold"
                 />
-<!--            <EditText-->
-<!--                android:id="@+id/username_login"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:drawableLeft="@drawable/person"-->
-<!--                android:drawablePadding="8dp"-->
-<!--                android:hint="Username"-->
-<!--                android:padding="10dp"-->
-<!--                android:background="@drawable/custom_edittext"-->
-<!--                android:textColorHint="#000000"-->
-<!--                android:textColor="#000000"/>-->
+
             <EditText
                 android:id="@+id/email_login"
                 android:layout_width="match_parent"

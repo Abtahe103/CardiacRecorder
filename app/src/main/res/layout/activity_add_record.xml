@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loginpagebgrnd2"
-    tools:context=".AddRecordActivity">
+    tools:context=".AddRecordActivity"
+    android:id="@+id/add_record_view">
 
 <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

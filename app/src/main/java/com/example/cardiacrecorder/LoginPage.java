@@ -1,8 +1,5 @@
 package com.example.cardiacrecorder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -45,7 +42,10 @@ public class LoginPage extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         EditText passwordtxt = findViewById(R.id.password_login);
 
+
         mAuth = FirebaseAuth.getInstance();
+
+
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +82,16 @@ public class LoginPage extends AppCompatActivity {
 
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
+
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             String user = mAuth.getCurrentUser().getUid();
                             Intent intent = new Intent(LoginPage.this, HomePage.class);
                             intent.putExtra("username",user);
                             startActivity(intent);
+
+                    
+
 
                         }
                         else {
