@@ -17,19 +17,24 @@ import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class HomePageTest {
-    @Rule
-    public ActivityScenarioRule<HomePage> activityScenarioRule = new ActivityScenarioRule<>(HomePage.class);
 
     /**
      * checks all cardviews are acting normal
      */
     @Test
-    public void testHomePageView(){
+    public void testHomePageView() throws InterruptedException {
+        ActivityScenarioRule<HomePage> activityScenarioRule = new ActivityScenarioRule<HomePage>(HomePage.class);
         ActivityScenario.launch(HomePage.class);
-        HomePage.usrname2="adnan";
+
         onView(withId(R.id.usernametext)).check(matches(isDisplayed()));
         onView(withId(R.id.add_cardview)).perform(click());
         onView(withId(R.id.add_record_view)).check(matches(isDisplayed()));
+        Espresso.pressBack();
+
+
+        onView(withId(R.id.records_cardview)).perform(click());
+//        Thread.sleep(3000);
+//        onView(withId(R.id.view_records)).check(matches(isDisplayed()));
         Espresso.pressBack();
 
         onView(withId(R.id.profile_cardview)).perform(click());
