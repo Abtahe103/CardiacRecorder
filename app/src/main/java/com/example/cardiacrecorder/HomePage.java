@@ -10,10 +10,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class HomePage extends AppCompatActivity {
     String usrname;
     CardView add_card,record_card,profile_card,logout_card;
     TextView textView;
+
+    private FirebaseAuth mAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -21,10 +25,15 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        mAuth = FirebaseAuth.getInstance();
+
+        String uid = mAuth.getCurrentUser().getUid();
+
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             usrname = bundle.getString("username");
         }
+
 
         usrname = getIntent().getStringExtra("username");
         textView = findViewById(R.id.usernametext);

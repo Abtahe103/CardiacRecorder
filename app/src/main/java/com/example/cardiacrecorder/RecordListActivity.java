@@ -11,6 +11,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +28,8 @@ public class RecordListActivity extends AppCompatActivity {
     RecordAdapter adapter;
 
     String usrname;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +40,12 @@ public class RecordListActivity extends AppCompatActivity {
             usrname = bundle.getString("username");
         }
 
+        mAuth = FirebaseAuth.getInstance();
+
+        String uid = mAuth.getCurrentUser().getUid();
+
         recyclerView = findViewById(R.id.recyclerViewId);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Records").child(usrname);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Records").child(uid);
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecordAdapter(this,list);
