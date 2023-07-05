@@ -55,18 +55,18 @@
             android:textColorHint="#000000"
             android:textColor="#000000"/>
 
-        <EditText
-            android:id="@+id/user_signup"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:drawableLeft="@drawable/person"
-            android:drawablePadding="8dp"
-            android:hint="Username"
-            android:padding="10dp"
-            android:background="@drawable/custom_edittext"
-            android:textColorHint="#000000"
-            android:textColor="#000000"/>
+<!--        <EditText-->
+<!--            android:id="@+id/user_signup"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:drawableLeft="@drawable/person"-->
+<!--            android:drawablePadding="8dp"-->
+<!--            android:hint="Username"-->
+<!--            android:padding="10dp"-->
+<!--            android:background="@drawable/custom_edittext"-->
+<!--            android:textColorHint="#000000"-->
+<!--            android:textColor="#000000"/>-->
         <EditText
             android:id="@+id/email_signup"
             android:layout_width="match_parent"
@@ -105,11 +105,6 @@
     </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    <ProgressBar
-        android:progressBackgroundTint="#cf3e00"
-        android:progressTint="#cf3e00"
-        android:id="@+id/progressBarId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

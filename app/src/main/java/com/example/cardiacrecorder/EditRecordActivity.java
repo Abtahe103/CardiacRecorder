@@ -1,13 +1,16 @@
 package com.example.cardiacrecorder;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,24 +20,35 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddRecordActivity extends AppCompatActivity {
-    EditText heart_rate_editText,diastolic_pressure_editText,systolic_pressure_editText,date_editText,time_editText,comment_edittext;
-    Button addbutton;
-    DatabaseReference databaseReference;
+public class EditRecordActivity extends AppCompatActivity {
 
-    static String usrname;
+    private EditText heart_rate_editText,diastolic_pressure_editText,systolic_pressure_editText,date_editText,time_editText,comment_edittext;
+    Button addbutton;
+    ArrayList<Record> list;
+    DatabaseReference databaseReference;
+    RecordAdapter adapter;
+
+
+    String usrname,key;
     long child_count;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_record);
-        usrname = "adnan";
+        setContentView(R.layout.activity_edit_record);
+
         usrname = HomePage.usrname;
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Records").child(usrname);
+        list = new ArrayList<>();
+        adapter = new RecordAdapter(this,list);
+
+        Record record = getIntent().getParcelableExtra("record");
 
         heart_rate_editText = findViewById(R.id.heart_rate_edit_text);
         diastolic_pressure_editText = findViewById(R.id.diastolic_pressure_edit_text);
@@ -43,17 +57,44 @@ public class AddRecordActivity extends AppCompatActivity {
         time_editText = findViewById(R.id.time_edit_text);
         comment_edittext = findViewById(R.id.comment);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(usrname);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                child_count = snapshot.getChildrenCount();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        heart_rate_editText.setText(record.getHeart_rt());
+        diastolic_pressure_editText.setText(record.getDia_press());
+        systolic_pressure_editText.setText(record.getSys_press());
+        date_editText.setText(record.getDate());
+        time_editText.setText(record.getTime());
+        comment_edittext.setText(record.getComment());
+        key = record.getKey();
 
-            }
-        });
+//        adapter.setEditClickListener(new RecordAdapter.EditClickListener() {
+//            @Override
+//            public void onEditClick(int position) {
+//                Record record = list.get(position);
+//                heart_rate_editText.setText(record.getHeart_rt());
+//                diastolic_pressure_editText.setText(record.getDia_press());
+//                systolic_pressure_editText.setText(record.getSys_press());
+//                date_editText.setText(record.getDate());
+//                time_editText.setText(record.getTime());
+//                comment_edittext.setText(record.getComment());
+//                key = record.getKey();
+//
+//
+//            }
+//        });
+
+
+//        recyclerView.setAdapter(adapter);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(usrname);
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                child_count = snapshot.getChildrenCount();
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         addbutton = findViewById(R.id.add_record_btn);
 
@@ -112,10 +153,13 @@ public class AddRecordActivity extends AppCompatActivity {
                 }
 
                 else{
+
+
                     InsertData();
                 }
             }
         });
+
 
     }
 
@@ -149,7 +193,7 @@ public class AddRecordActivity extends AppCompatActivity {
         String dia = diastolic_pressure_editText.getText().toString();
         String hrt = heart_rate_editText.getText().toString();
         String cmnt = comment_edittext.getText().toString();
-        String key = databaseReference.push().getKey();
+//        String key = databaseReference.push().getKey();
         Record record = new Record(key,date,time,sys,dia,hrt,cmnt);
 
 
@@ -164,4 +208,8 @@ public class AddRecordActivity extends AppCompatActivity {
         heart_rate_editText.setText("");
         comment_edittext.setText("");
     }
+
+
+
+
 }
