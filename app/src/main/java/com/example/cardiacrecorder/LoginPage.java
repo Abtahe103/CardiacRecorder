@@ -27,10 +27,10 @@ import java.util.TimerTask;
 
 public class LoginPage extends AppCompatActivity {
 
-//    ProgressBar progressBar;
     private FirebaseAuth mAuth;
-    int count = 0;
-//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+    String usrname;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,6 +3,7 @@ package com.example.cardiacrecorder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,14 +27,18 @@ public class AddRecordActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     String usrname;
-    long child_count;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record);
 
-        usrname = HomePage.usrname;
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            usrname = bundle.getString("username");
+        }
+
 
 
         heart_rate_editText = findViewById(R.id.heart_rate_edit_text);
@@ -47,7 +52,7 @@ public class AddRecordActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                child_count = snapshot.getChildrenCount();
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -165,5 +170,13 @@ public class AddRecordActivity extends AppCompatActivity {
         diastolic_pressure_editText.setText("");
         heart_rate_editText.setText("");
         comment_edittext.setText("");
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AddRecordActivity.this,HomePage.class);
+        intent.putExtra("username",usrname);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

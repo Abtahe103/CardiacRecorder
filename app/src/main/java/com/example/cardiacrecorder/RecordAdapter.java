@@ -42,6 +42,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
         holder.dia.setText(record.getDia_press());
         holder.heart.setText(record.getHeart_rt());
         holder.com.setText(record.getComment());
+
+        ImageView alertImageView = holder.itemView.findViewById(R.id.danger);
+
+        if (record.shouldShowAlert()) {
+            alertImageView.setVisibility(View.VISIBLE);
+        } else {
+            alertImageView.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

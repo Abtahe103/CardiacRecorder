@@ -4,24 +4,31 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
-    static String usrname;
+    String usrname;
     CardView add_card,record_card,profile_card,logout_card;
     TextView textView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            usrname = bundle.getString("username");
+        }
+
         usrname = getIntent().getStringExtra("username");
         textView = findViewById(R.id.usernametext);
-        textView.setText("Hi, "+usrname+"! How are you today?");
+        textView.setText("Hi, How are you feeling today?");
 
 
         add_card=findViewById(R.id.add_cardview);
@@ -33,6 +40,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this,AddRecordActivity.class);
+                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });
@@ -41,6 +49,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this,RecordListActivity.class);
+                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });
@@ -52,6 +61,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePage.this,ProfileViewActivity.class);
+                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });

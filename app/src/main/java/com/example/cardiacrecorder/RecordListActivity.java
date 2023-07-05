@@ -32,7 +32,10 @@ public class RecordListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_list);
 
-        usrname = HomePage.usrname;
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            usrname = bundle.getString("username");
+        }
 
         recyclerView = findViewById(R.id.recyclerViewId);
         databaseReference = FirebaseDatabase.getInstance().getReference("Records").child(usrname);
@@ -56,16 +59,9 @@ public class RecordListActivity extends AppCompatActivity {
         adapter.setEditClickListener(new RecordAdapter.EditClickListener() {
             @Override
             public void onEditClick(Record record) {
-//                Record record = list.get(position);
-//                heart_rate_editText.setText(record.getHeart_rt());
-//                diastolic_pressure_editText.setText(record.getDia_press());
-//                systolic_pressure_editText.setText(record.getSys_press());
-//                date_editText.setText(record.getDate());
-//                time_editText.setText(record.getTime());
-//                comment_edittext.setText(record.getComment());
-//                key = record.getKey();
                 Intent intent = new Intent(RecordListActivity.this,EditRecordActivity.class);
                 intent.putExtra("record", (Parcelable) record);
+                intent.putExtra("username",usrname);
                 startActivity(intent);
             }
         });
@@ -77,6 +73,7 @@ public class RecordListActivity extends AppCompatActivity {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Record record = dataSnapshot.getValue(Record.class);
+
                     list.add(record);
                 }
                 adapter.notifyDataSetChanged();
@@ -86,12 +83,14 @@ public class RecordListActivity extends AppCompatActivity {
 
             }
         });
-//        adapter.setOnItemClickListener(new RecordAdapter.ClickListener() {
-//            @Override
-//            public void onItemClick(int position, View v) {
-//                Toast.makeText(recordlist.this, "onitem clicked", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(recordlist.this,MainActivity.class));
-//            }
-//        });
+
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(RecordListActivity.this,HomePage.class);
+        intent.putExtra("username",usrname);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

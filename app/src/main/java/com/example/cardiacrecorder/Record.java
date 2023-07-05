@@ -121,6 +121,11 @@ public class Record implements Parcelable {
         dest.writeString(heart_rt);
         dest.writeString(comment);
     }
+
+    public boolean shouldShowAlert() {
+        return (Integer.parseInt(sys_press) <= 90 || Integer.parseInt(sys_press) >= 140) ||
+                (Integer.parseInt(dia_press) <= 60 || Integer.parseInt(dia_press) >= 90);
+    }
 }
 
 

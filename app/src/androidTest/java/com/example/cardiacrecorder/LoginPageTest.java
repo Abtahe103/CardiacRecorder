@@ -20,7 +20,6 @@ public class LoginPageTest {
     public ActivityScenarioRule<LoginPage> activityScenarioRule = new ActivityScenarioRule<>(LoginPage.class);
     @Test
     public void testLoginPageView(){
-        onView(withId(R.id.username_login)).perform(ViewActions.typeText("adnan"));
         onView(withId(R.id.email_login)).perform(ViewActions.typeText("adnan@gmail.com"));
         onView(withId(R.id.password_login)).perform(ViewActions.typeText(String.valueOf(123456)));
         onView(withId(R.id.btn_login)).perform(click());

@@ -3,6 +3,7 @@ package com.example.cardiacrecorder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +24,16 @@ public class ProfileViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            usrname = bundle.getString("username");
+        }
+
         nametext = findViewById(R.id.name_profile);
-        usernametext = findViewById(R.id.username_profile);
+//        usernametext = findViewById(R.id.username_profile);
         mailtext = findViewById(R.id.mail_profile);
 
-        usrname = HomePage.usrname;
-        usernametext.setText("Username : "+usrname);
+//        usernametext.setText("Username : "+usrname);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(usrname);
 
@@ -57,5 +62,13 @@ public class ProfileViewActivity extends AppCompatActivity {
             }
         });
 //        Toast.makeText(this,"username: "+name+" mail: "+email,Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ProfileViewActivity.this,HomePage.class);
+        intent.putExtra("username",usrname);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }
