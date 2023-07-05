@@ -42,7 +42,7 @@ public class ProfileViewActivity extends AppCompatActivity {
 
 //        usernametext.setText("Username : "+usrname);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(usrname);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
 
         databaseReference.child("Email").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
