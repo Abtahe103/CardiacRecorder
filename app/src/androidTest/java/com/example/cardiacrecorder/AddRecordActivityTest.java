@@ -20,6 +20,11 @@ public class AddRecordActivityTest {
      */
     @Test
     public void displaytest() {
+        HomePage.usrname="adnan";
+
+        ActivityScenarioRule<AddRecordActivity> activityScenarioRule = new ActivityScenarioRule<AddRecordActivity>(AddRecordActivity.class);
+        ActivityScenario.launch(AddRecordActivity.class);
+
         onView(withId(R.id.heart_rate_edit_text)).check(matches(isDisplayed()));
         onView(withId(R.id.diastolic_pressure_edit_text)).check(matches(isDisplayed()));
         onView(withId(R.id.systolic_pressure_edit_text)).check(matches(isDisplayed()));

@@ -1,12 +1,14 @@
 package com.example.cardiacrecorder;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class RecordListActivityTestTest {
+public class UnitTest {
+    /**
+     * checks if
+     */
     @Test
-    public void displaytest() {
+    public void testAdd() {
 
     }
 }
