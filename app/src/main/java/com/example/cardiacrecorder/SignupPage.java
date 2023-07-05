@@ -90,7 +90,7 @@ public class SignupPage extends AppCompatActivity {
                     return;
                 }
 
-                databaseReference.child("JobSeeker").addListenerForSingleValueEvent(new ValueEventListener() {
+                databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.hasChild(user)){

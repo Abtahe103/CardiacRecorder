@@ -40,7 +40,7 @@ public class SignupPageTest {
 
         onView(withId(R.id.Name)).perform(typeText("abcd123"));
         onView(withId(R.id.user_signup)).perform(typeText("abcd123"));
-        onView(withId(R.id.email_signup)).perform(typeText("abcd1234@gmail.com"));
+        onView(withId(R.id.email_signup)).perform(typeText("hp@gmail.com"));
         Espresso.pressBack();
         onView(withId(R.id.password_signup)).perform(typeText("123456"));
         Espresso.pressBack();

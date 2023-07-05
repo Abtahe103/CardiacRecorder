@@ -3,6 +3,8 @@ package com.example.cardiacrecorder;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 import androidx.test.core.app.ActivityScenario;
@@ -13,6 +15,24 @@ import org.junit.Test;
 
 public class AddRecordActivityTest {
 
+    /**
+     * Checks if all the views are properly displayed in the activity
+     */
+    @Test
+    public void displaytest() {
+        onView(withId(R.id.heart_rate_edit_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.diastolic_pressure_edit_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.systolic_pressure_edit_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.date_edit_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.time_edit_text)).check(matches(isDisplayed()));
+        onView(withId(R.id.comment)).check(matches(isDisplayed()));
+        onView(withId(R.id.add_record_btn)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * this test function types in all the editext and perform click on add record button
+     * @throws InterruptedException
+     */
     @Test
     public void testAddRecordActivity() throws InterruptedException {
 
@@ -32,10 +52,7 @@ public class AddRecordActivityTest {
         onView(withId(R.id.add_record_btn)).perform(click());
         Thread.sleep(2000);
 
-//        onView(withText("Your message here")).inRoot(withDecorView(Matchers.not(activityScenarioRule.getActivity().getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-
-        //onView(withText("R.id.ToastText")).inRoot(withDecorView(Matchers.not(AddRecordActivity.getWindow().getDecorView())))// Here you use decorView.check(matches(isDisplayed()));
-//        onView(withText("Record Added")).check(matches(isDisplayed()));
     }
+
+
 }
