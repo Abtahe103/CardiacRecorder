@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder>{
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
+
+    private EditClickListener editClickListener;
+
     Context context;
-    ArrayList<Record> list;
+    static ArrayList<Record> list;
+
 
     public RecordAdapter(Context context, ArrayList<Record> list) {
         this.context = context;
@@ -25,7 +30,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.recordlist,parent,false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v,clickListener,editClickListener);
     }
 
     @Override
@@ -46,7 +51,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView date,time,sys,dia,heart,com;
-        public MyViewHolder(@NonNull View itemView) {
+        ImageView deleteBtn;
+        ImageView editBtn;
+        public MyViewHolder(@NonNull View itemView,ClickListener clickListener,EditClickListener editClickListener) {
             super(itemView);
             date = itemView.findViewById(R.id.textDate);
             time = itemView.findViewById(R.id.textTime);
@@ -54,19 +61,47 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
             dia = itemView.findViewById(R.id.textDia);
             heart = itemView.findViewById(R.id.textHeart);
             com = itemView.findViewById(R.id.textCom);
+            deleteBtn = itemView.findViewById(R.id.delete_btn);
+            editBtn = itemView.findViewById(R.id.edit_btn);
 
             itemView.setOnClickListener(this);
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClick(getAdapterPosition());
+                }
+            });
+
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+                    Record record = list.get(position);
+                    editClickListener.onEditClick(record);
+                }
+            });
+
         }
 
         @Override
         public void onClick(View v) {
-            clickListener.onItemClick(getAdapterPosition(),v);
+//            clickListener.onItemClick(getAdapterPosition());
         }
     }
     public interface ClickListener{
-        void onItemClick(int position,View v);
+        void onItemClick(int position);
+    }
+
+    public interface EditClickListener{
+        void onEditClick(Record record);
     }
     public void setOnItemClickListener(ClickListener clickListener){
-        RecordAdapter.clickListener = clickListener;
+        this.clickListener = clickListener;
+    }
+
+    public void setEditClickListener(EditClickListener editClickListener) {
+        this.editClickListener = editClickListener;
     }
 }
