@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/homepagebg"
     tools:context=".HomePage"
-    android:id="@+id/homepage"
+    android:id="@+id/homepage_activity"
     >
 
     <TextView

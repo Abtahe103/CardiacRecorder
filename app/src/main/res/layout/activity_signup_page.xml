@@ -8,6 +8,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     tools:context=".SignupPage"
+    android:id="@+id/signuppage"
     android:background="@drawable/loginpagebgrnd2">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
