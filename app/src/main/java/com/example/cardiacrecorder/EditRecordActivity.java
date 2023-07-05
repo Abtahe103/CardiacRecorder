@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +35,6 @@ public class EditRecordActivity extends AppCompatActivity {
 
 
     String usrname,key;
-    long child_count;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -42,7 +42,11 @@ public class EditRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_record);
 
-        usrname = HomePage.usrname;
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null){
+            usrname = bundle.getString("username");
+        }
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Records").child(usrname);
         list = new ArrayList<>();
@@ -65,36 +69,9 @@ public class EditRecordActivity extends AppCompatActivity {
         comment_edittext.setText(record.getComment());
         key = record.getKey();
 
-//        adapter.setEditClickListener(new RecordAdapter.EditClickListener() {
-//            @Override
-//            public void onEditClick(int position) {
-//                Record record = list.get(position);
-//                heart_rate_editText.setText(record.getHeart_rt());
-//                diastolic_pressure_editText.setText(record.getDia_press());
-//                systolic_pressure_editText.setText(record.getSys_press());
-//                date_editText.setText(record.getDate());
-//                time_editText.setText(record.getTime());
-//                comment_edittext.setText(record.getComment());
-//                key = record.getKey();
-//
-//
-//            }
-//        });
 
-
-//        recyclerView.setAdapter(adapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(usrname);
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                child_count = snapshot.getChildrenCount();
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
 
         addbutton = findViewById(R.id.add_record_btn);
 
@@ -156,6 +133,7 @@ public class EditRecordActivity extends AppCompatActivity {
 
 
                     InsertData();
+
                 }
             }
         });
@@ -193,7 +171,7 @@ public class EditRecordActivity extends AppCompatActivity {
         String dia = diastolic_pressure_editText.getText().toString();
         String hrt = heart_rate_editText.getText().toString();
         String cmnt = comment_edittext.getText().toString();
-//        String key = databaseReference.push().getKey();
+
         Record record = new Record(key,date,time,sys,dia,hrt,cmnt);
 
 
@@ -209,6 +187,14 @@ public class EditRecordActivity extends AppCompatActivity {
         comment_edittext.setText("");
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EditRecordActivity.this,RecordListActivity.class);
+        intent.putExtra("username",usrname);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
 
 
 

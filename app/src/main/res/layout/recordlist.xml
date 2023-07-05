@@ -144,11 +144,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
+                android:id="@+id/danger"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/danger_alert"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible">
+
+            </ImageView>
+
+            <ImageView
                 android:id="@+id/delete_btn"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:src="@drawable/delete_button"
-                android:layout_margin="30dp">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp">
 
             </ImageView>
             <ImageView
@@ -156,7 +168,8 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
                 android:src="@drawable/edit_button"
-                android:layout_margin="30dp">
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp">
 
             </ImageView>
 

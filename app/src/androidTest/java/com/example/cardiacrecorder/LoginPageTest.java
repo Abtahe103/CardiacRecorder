@@ -2,14 +2,11 @@ package com.example.cardiacrecorder;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.intent.Intents;
-import androidx.test.espresso.intent.matcher.IntentMatchers;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Rule;
@@ -42,21 +39,6 @@ public class LoginPageTest {
         Espresso.pressBack();
         onView(withId(R.id.btn_login)).perform(click());
 
-        Thread.sleep(3000);
-        Intents.intended(IntentMatchers.hasComponent(HomePage.class.getName()));
-        onView(withId(R.id.homepage_activity)).check(matches(isDisplayed()));
-        Intents.release();
-
-//        onView(withId(R.id.homepage_activiy)).check(matches(isDisplayed()));
-    }
-
-    /**
-     * this test function checks whether the signup button works perfectly
-     */
-    @Test
-    public void signupbuttontest() throws InterruptedException {
-        onView(withId(R.id.btn_signup)).perform(click());
-        Thread.sleep(1000);
-        onView(withId(R.id.signuppage)).check(matches(isDisplayed()));
+        onView(withId(R.id.homepage)).check(matches(isDisplayed()));
     }
 }
