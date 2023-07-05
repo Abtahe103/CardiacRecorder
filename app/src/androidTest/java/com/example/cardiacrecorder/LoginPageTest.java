@@ -18,10 +18,25 @@ import org.junit.runners.JUnit4;
 public class LoginPageTest {
     @Rule
     public ActivityScenarioRule<LoginPage> activityScenarioRule = new ActivityScenarioRule<>(LoginPage.class);
+
+    /**
+     * this test function checks if everything in login page is displayed properly
+     */
+    public void displaytest(){
+        onView(withId(R.id.email_login)).check(matches(isDisplayed()));
+        onView(withId(R.id.password_login)).check(matches(isDisplayed()));
+    }
+
+    /**
+     * this test function types in all the editext and perform login
+     * @throws InterruptedException
+     */
     @Test
-    public void testLoginPageView(){
-        onView(withId(R.id.email_login)).perform(ViewActions.typeText("adnan@gmail.com"));
-        onView(withId(R.id.password_login)).perform(ViewActions.typeText(String.valueOf(123456)));
+    public void loginSuccessTest() throws InterruptedException {
+        Intents.init();
+        onView(withId(R.id.email_login)).perform(typeText("adnan@gmail.com"));
+        onView(withId(R.id.password_login)).perform(typeText("123456"));
+        Espresso.pressBack();
         onView(withId(R.id.btn_login)).perform(click());
 
         onView(withId(R.id.homepage)).check(matches(isDisplayed()));
