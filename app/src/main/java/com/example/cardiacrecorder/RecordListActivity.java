@@ -69,6 +69,8 @@ public class RecordListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

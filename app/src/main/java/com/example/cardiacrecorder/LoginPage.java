@@ -27,10 +27,10 @@ import java.util.TimerTask;
 
 public class LoginPage extends AppCompatActivity {
 
-    ProgressBar progressBar;
+//    ProgressBar progressBar;
     private FirebaseAuth mAuth;
     int count = 0;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,13 @@ public class LoginPage extends AppCompatActivity {
         Button button1 = findViewById(R.id.btn_login);
         Button button2 = findViewById(R.id.btn_signup);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
-        EditText usertxt = findViewById(R.id.username_login);
+
         EditText emailtxt = findViewById(R.id.email_login);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         EditText passwordtxt = findViewById(R.id.password_login);
-        progressBar = findViewById(R.id.progressBarId);
+
         mAuth = FirebaseAuth.getInstance();
-        progressBar.setVisibility(View.INVISIBLE);
+
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,14 +55,10 @@ public class LoginPage extends AppCompatActivity {
             }
 
             private void userLogin() {
-                String user = usertxt.getText().toString().trim();
+
                 String email = emailtxt.getText().toString().trim();
                 String password = passwordtxt.getText().toString().trim();
-                if(user.isEmpty()){
-                    usertxt.setError("Enter a username");
-                    usertxt.requestFocus();
-                    return;
-                }
+
                 if(email.isEmpty()){
                     emailtxt.setError("Enter an email address");
                     emailtxt.requestFocus();
@@ -84,55 +80,27 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
-                databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(user)) {
-                            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-//                                        progressBar.setVisibility(View.VISIBLE);
-//                                        Timer timer = new Timer();
-//                                        TimerTask timerTask =new TimerTask() {
-//                                            @Override
-//                                            public void run() {
-//                                                count++;
-//                                                progressBar.setProgress(count);
-//                                                if(count == 20){
-//                                                    timer.cancel();
-                                                    Intent intent = new Intent(LoginPage.this, HomePage.class);
-                                                    intent.putExtra("username",user);
-                                                    startActivity(intent);
-//                                                }
-//                                            }
-//                                        };
-//                                        timer.schedule(timerTask,0,10);
-
-                                    }
-                                    else {
-                                        emailtxt.setError("Wrong Email");
-                                        emailtxt.requestFocus();
-                                        passwordtxt.setError("Or Wrong Password");
-                                        passwordtxt.requestFocus();
-                                    }
-                                }
-                            });
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            String user = mAuth.getCurrentUser().getUid();
+                            Intent intent = new Intent(LoginPage.this, HomePage.class);
+                            intent.putExtra("username",user);
+                            startActivity(intent);
 
                         }
-                        else{
-                            usertxt.setError("Username doesn't exist");
-                            usertxt.requestFocus();
+                        else {
+                            emailtxt.setError("Wrong Email");
+                            emailtxt.requestFocus();
+                            passwordtxt.setError("Or Wrong Password");
+                            passwordtxt.requestFocus();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 
             }
+
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,5 +109,7 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
+
 }

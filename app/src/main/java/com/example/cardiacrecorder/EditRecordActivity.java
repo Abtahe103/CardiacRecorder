@@ -160,6 +160,7 @@ public class EditRecordActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private boolean isValidDate(String date1) {
@@ -207,5 +208,8 @@ public class EditRecordActivity extends AppCompatActivity {
         heart_rate_editText.setText("");
         comment_edittext.setText("");
     }
+
+
+
 
 }
