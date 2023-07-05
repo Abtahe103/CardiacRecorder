@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".HomePage"
     android:background="@drawable/homepagebg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/homepage">
     <TextView
         android:id="@+id/usernametext"
         android:layout_width="wrap_content"

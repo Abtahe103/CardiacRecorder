@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +29,8 @@ public class AddRecordActivity extends AppCompatActivity {
 
     String usrname;
 
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,9 @@ public class AddRecordActivity extends AppCompatActivity {
             usrname = bundle.getString("username");
         }
 
+        mAuth = FirebaseAuth.getInstance();
 
+        String uid = mAuth.getCurrentUser().getUid();
 
         heart_rate_editText = findViewById(R.id.heart_rate_edit_text);
         diastolic_pressure_editText = findViewById(R.id.diastolic_pressure_edit_text);
@@ -48,7 +53,7 @@ public class AddRecordActivity extends AppCompatActivity {
         time_editText = findViewById(R.id.time_edit_text);
         comment_edittext = findViewById(R.id.comment);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(usrname);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Records").child(uid);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

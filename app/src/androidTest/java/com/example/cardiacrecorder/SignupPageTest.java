@@ -47,7 +47,7 @@ public class SignupPageTest {
         Intents.init();
         Thread.sleep(3000);
         Intents.intended(IntentMatchers.hasComponent(HomePage.class.getName()));
-        onView(withId(R.id.homepage_activity)).check(matches(isDisplayed()));
+        onView(withId(R.id.homepage)).check(matches(isDisplayed()));
         Intents.release();
     }
 }
