@@ -92,22 +92,22 @@ public class LoginPage extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        Timer timer = new Timer();
-                                        TimerTask timerTask =new TimerTask() {
-                                            @Override
-                                            public void run() {
-                                                count++;
-                                                progressBar.setProgress(count);
-                                                if(count == 20){
-                                                    timer.cancel();
+//                                        progressBar.setVisibility(View.VISIBLE);
+//                                        Timer timer = new Timer();
+//                                        TimerTask timerTask =new TimerTask() {
+//                                            @Override
+//                                            public void run() {
+//                                                count++;
+//                                                progressBar.setProgress(count);
+//                                                if(count == 20){
+//                                                    timer.cancel();
                                                     Intent intent = new Intent(LoginPage.this, HomePage.class);
                                                     intent.putExtra("username",user);
                                                     startActivity(intent);
-                                                }
-                                            }
-                                        };
-                                        timer.schedule(timerTask,0,10);
+//                                                }
+//                                            }
+//                                        };
+//                                        timer.schedule(timerTask,0,10);
 
                                     }
                                     else {

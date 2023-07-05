@@ -102,15 +102,15 @@ public class SignupPage extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        Timer timer = new Timer();
-                                        TimerTask timerTask = new TimerTask() {
-                                            @Override
-                                            public void run() {
-                                                count++;
-                                                progressBar.setProgress(count);
-                                                if(count == 30){
-                                                    timer.cancel();
+//                                        progressBar.setVisibility(View.VISIBLE);
+//                                        Timer timer = new Timer();
+//                                        TimerTask timerTask = new TimerTask() {
+//                                            @Override
+//                                            public void run() {
+//                                                count++;
+//                                                progressBar.setProgress(count);
+//                                                if(count == 30){
+//                                                    timer.cancel();
 
                                                     databaseReference.child("User").child(user).child("Name").setValue(fName);
                                                     databaseReference.child("User").child(user).child("Username").setValue(user);
@@ -119,10 +119,10 @@ public class SignupPage extends AppCompatActivity {
                                                     Intent intent = new Intent(SignupPage.this,HomePage.class);
                                                     intent.putExtra("username",user);
                                                     startActivity(intent);
-                                                }
-                                            }
-                                        };
-                                        timer.schedule(timerTask,0,30);
+//                                                }
+//                                            }
+//                                        };
+//                                        timer.schedule(timerTask,0,30);
 
                                     }
                                     else{
