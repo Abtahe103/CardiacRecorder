@@ -11,7 +11,7 @@ public class UnitTest {
      * checks if
      */
     @Test
-    public void testAdd() throws InterruptedException {
+    public void testAddRecord(){
 
         Record dataList = new Record("1","02/03/2021","12:15","110","75","71","daily checkup");
         assertEquals("02/03/2021",dataList.getDate());
