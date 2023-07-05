@@ -86,7 +86,9 @@ public class SignupPage extends AppCompatActivity {
                     passwordTxt.requestFocus();
                     return;
                 }
+
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
