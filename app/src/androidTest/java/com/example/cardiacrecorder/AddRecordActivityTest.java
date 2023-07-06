@@ -19,10 +19,12 @@ public class AddRecordActivityTest {
      * Checks if all the views are properly displayed in the activity
      */
     @Test
-    public void displaytest() {
+    public void displaytest() throws InterruptedException {
 
         ActivityScenarioRule<AddRecordActivity> activityScenarioRule = new ActivityScenarioRule<AddRecordActivity>(AddRecordActivity.class);
         ActivityScenario.launch(AddRecordActivity.class);
+
+        Thread.sleep(1000);
 
         onView(withId(R.id.heart_rate_edit_text)).check(matches(isDisplayed()));
         onView(withId(R.id.diastolic_pressure_edit_text)).check(matches(isDisplayed()));
