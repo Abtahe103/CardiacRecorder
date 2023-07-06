@@ -1,14 +1,14 @@
 package com.example.cardiacrecorder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +21,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+/**
+ * activity for adding a new record
+ */
 
 public class AddRecordActivity extends AppCompatActivity {
     EditText heart_rate_editText,diastolic_pressure_editText,systolic_pressure_editText,date_editText,time_editText,comment_edittext;
