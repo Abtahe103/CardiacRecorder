@@ -30,6 +30,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="Google&#10; Pixel 5" value="120" />
                   <entry key="Pixel_2_API_30" value="120" />
+                  <entry key="Pixel_3a_API_33" value="120" />
                   <entry key="Pixel_6_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
@@ -118,6 +119,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_3a_API_33" value="120" />
                   <entry key="Pixel_6_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
@@ -177,6 +179,7 @@
                   <entry key="09301FDD4006JY" value="120" />
                   <entry key="Duration" value="90" />
                   <entry key="Google&#10; Pixel 5" value="120" />
+                  <entry key="Pixel_3a_API_33" value="120" />
                   <entry key="Pixel_6_Pro_API_34" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
