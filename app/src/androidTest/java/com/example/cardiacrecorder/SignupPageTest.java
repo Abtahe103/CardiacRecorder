@@ -38,7 +38,7 @@ public class SignupPageTest {
     public void signupSuccessTest() throws InterruptedException {
 
         onView(withId(R.id.Name)).perform(typeText("abcd123"));
-        onView(withId(R.id.email_signup)).perform(typeText("hp@gmail.com"));
+        onView(withId(R.id.email_signup)).perform(typeText("hpppp@gmail.com"));
         Espresso.pressBack();
         onView(withId(R.id.password_signup)).perform(typeText("123456"));
         Espresso.pressBack();
