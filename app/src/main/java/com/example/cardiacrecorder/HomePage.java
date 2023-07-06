@@ -1,17 +1,19 @@
 package com.example.cardiacrecorder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.cardview.widget.CardView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Homepage activity
+ */
 public class HomePage extends AppCompatActivity {
     String usrname;
     CardView add_card,record_card,profile_card,logout_card;
