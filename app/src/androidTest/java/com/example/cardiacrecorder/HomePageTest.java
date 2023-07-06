@@ -22,7 +22,7 @@ public class HomePageTest {
      * checks all cardviews are acting normal
      */
     @Test
-    public void testHomePageView() throws InterruptedException {
+    public void testHomePageView() {
         ActivityScenarioRule<HomePage> activityScenarioRule = new ActivityScenarioRule<HomePage>(HomePage.class);
         ActivityScenario.launch(HomePage.class);
 
