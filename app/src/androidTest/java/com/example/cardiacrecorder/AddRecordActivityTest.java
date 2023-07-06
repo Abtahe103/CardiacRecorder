@@ -20,7 +20,6 @@ public class AddRecordActivityTest {
      */
     @Test
     public void displaytest() {
-        String usrname="adnan";
 
         ActivityScenarioRule<AddRecordActivity> activityScenarioRule = new ActivityScenarioRule<AddRecordActivity>(AddRecordActivity.class);
         ActivityScenario.launch(AddRecordActivity.class);
@@ -40,8 +39,6 @@ public class AddRecordActivityTest {
      */
     @Test
     public void testAddRecordActivity() throws InterruptedException {
-
-        HomePage.usrname2="adnan";
 
         ActivityScenarioRule<AddRecordActivity> activityScenarioRule = new ActivityScenarioRule<AddRecordActivity>(AddRecordActivity.class);
         ActivityScenario.launch(AddRecordActivity.class);
