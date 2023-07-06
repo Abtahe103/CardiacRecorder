@@ -17,7 +17,7 @@ public class Record implements Parcelable {
     private String heart_rt;
     private String comment;
 
-    private List<Record> insert_records_list = new ArrayList<>();
+    private List<Record> record_list = new ArrayList<>();
 
     public Record() {
     }
@@ -210,7 +210,7 @@ public class Record implements Parcelable {
      */
     public int count()
     {
-        return insert_records_list.size();
+        return record_list.size();
     }
 
     /**
@@ -221,11 +221,11 @@ public class Record implements Parcelable {
 
     public void addUserData(Record data)
     {
-        if(insert_records_list.contains(data))
+        if(record_list.contains(data))
         {
             throw new IllegalArgumentException();
         }
-        insert_records_list.add(data);
+        record_list.add(data);
     }
 
     /**
@@ -235,7 +235,7 @@ public class Record implements Parcelable {
      */
     public List<Record> getData()
     {
-        List<Record>datalist = insert_records_list;
+        List<Record>datalist = record_list;
         return datalist;
     }
 
@@ -246,10 +246,10 @@ public class Record implements Parcelable {
      */
     public void deleteUserData(Record data)
     {
-        List<Record> datalist = insert_records_list;
+        List<Record> datalist = record_list;
         if(datalist.contains(data))
         {
-            insert_records_list.remove(data);
+            record_list.remove(data);
         }
         else {
             throw new IllegalArgumentException();
