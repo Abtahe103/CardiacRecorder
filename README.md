@@ -4,8 +4,8 @@ CardiacRecorder is an android app that can be used for monitoring cardiovascular
 
 # Contributors
 
-- [1907103](https://github.com/Abtahe103)
-- [1907106](https://github.com/RakibHasan106)
+- Mohammad Abtahe Alam[1907103](https://github.com/Abtahe103)
+- Md.Rakibul Hasan Adnan[1907106](https://github.com/RakibHasan106)
 
 # Features
 
